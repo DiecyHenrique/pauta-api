@@ -34,10 +34,12 @@ public class PautaService {
 
 	public Pauta salvarPauta(Pauta pauta) {
 		
-		if (pauta.getDuracao() == null || pauta.getDuracao() < 1) {
-			pauta.setDuracao(60000l);
-		} else {
-			pauta.setDuracao((pauta.getDuracao() * 60000)); // Convertendo para milisegundos
+		if(pauta.getStatus() == null) {
+			if (pauta.getDuracao() == null || pauta.getDuracao() < 1) {
+				pauta.setDuracao(60000l);
+			} else {
+				pauta.setDuracao((pauta.getDuracao() * 60000)); // Convertendo para milisegundos
+			}
 		}
 		
 		return pautaRepository.save(pauta);
@@ -49,7 +51,7 @@ public class PautaService {
 		pautaRecuperada.setDataInicioVotacao(System.currentTimeMillis());
 		pautaRecuperada.setStatus("ABERTA");
 		
-		Pauta pautaSalva = this.salvarPauta(pautaRecuperada);
+		Pauta pautaSalva = this.pautaRepository.save(pautaRecuperada);
 		return pautaSalva;
 	}
 	
