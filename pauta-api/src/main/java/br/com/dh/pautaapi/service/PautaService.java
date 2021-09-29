@@ -47,6 +47,7 @@ public class PautaService {
 		
 		Pauta pautaRecuperada = this.findByid(pauta.getId_pauta());
 		pautaRecuperada.setDataInicioVotacao(System.currentTimeMillis());
+		pautaRecuperada.setStatus("ABERTA");
 		
 		Pauta pautaSalva = this.salvarPauta(pautaRecuperada);
 		return pautaSalva;

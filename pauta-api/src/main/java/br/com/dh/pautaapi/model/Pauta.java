@@ -21,10 +21,11 @@ public class Pauta implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_pauta;
-	
+
 	private String nome;
 	private Long duracao;
 	private Long dataInicioVotacao;
+	private String status;
 
 	@OneToMany(mappedBy = "pauta", orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Voto> votos = new ArrayList<Voto>();
@@ -59,6 +60,14 @@ public class Pauta implements Serializable {
 
 	public void setDataInicioVotacao(Long dataInicioVotacao) {
 		this.dataInicioVotacao = dataInicioVotacao;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public List<Voto> getVotos() {
